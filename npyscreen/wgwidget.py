@@ -326,6 +326,21 @@ class Widget(InputHandler, wgwidget_proto._LinePrinter, EventHandler):
         # this method is called when the widget has been resized.
         pass
     
+    def on_focusin(self):
+        """
+        Event function to be called when the widget is focused. Note that this
+        is not called by the framework by default, the widget has to implement
+        calling this event itself.
+        """
+
+        pass
+
+    def on_focusout(self):
+        """
+        Counterpart to on_focusin.
+        """
+
+        pass
         
     def do_colors(self):
         "Returns True if the widget should try to paint in coloour."
