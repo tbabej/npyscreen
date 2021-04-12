@@ -132,9 +132,16 @@ class Checkbox(_ToggleControl):
         self._update_label_row_attributes(self.label_area, clear=clear)
     
     def _update_label_row_attributes(self, row, clear=True):
+        emitted = False
         if self.editing:
+            if not row.highlight and not emitted:
+                row.highlight = True
+                self.on_focusin()
             row.highlight = True
         else:
+            if row.highlight and not emitted:
+                row.highlight = False
+                self.on_focusout()
             row.highlight = False
         
         if self.show_bold: 
@@ -148,8 +155,14 @@ class Checkbox(_ToggleControl):
             row.important = False
 
         if self.highlight: 
+            if not row.highlight and not emitted:
+                row.highlight = True
+                self.on_focusin()
             row.highlight = True
         else: 
+            if row.highlight and not emitted:
+                row.highlight = False
+                self.on_focusout()
             row.highlight = False
 
         row.update(clear=clear)
